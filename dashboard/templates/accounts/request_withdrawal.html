@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+
+
+<div id="input-nav">
+    <a href="{% url 'home' %}" class="primary1">Home</a>
+    <i>&rsaquo;</i> Customers
+</div>
+
+<div class="title-1"><i class="fas fa-user"></i>Retiro</div>
+<div class="title-line"></div>
+
+<!-- Estiliza el saldo actual -->
+<div class="current-balance-container text-center mt-3">
+    <h3 class="current-balance">Tu saldo actual: ${{ current_balance }}</h3>
+</div>
+
+{% if request.user.is_superuser %}
+    <a class="add-button" href="{% url 'pays_list' %}">
+        <i class="fa fa-users"></i> Ver Clientes
+    </a>
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Solicitud de Retiro</h3>
+                    <form method="post" class="mt-4" id="deposit-form">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_amount" class="form-label">Cantidad a Retirar (USD)</label>
+                            <input type="number" name="amount" class="form-control" id="id_amount" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_destination_account_id" class="form-label">Selecciona una Cuenta Externa</label>
+                            <select name="destination_account_id" class="form-control" id="id_destination_account_id" required>
+                                {% for account in accounts %}
+                                    <option value="{{ account.id }}">{{ account.institution_name }} - {{ account.account_holder_name }} - {{ account.identification_number }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" id="confirm-deposit-btn">Solicitar Retiro</button>
+                    </form>
+   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Captura el evento de cambio en el elemento select
+        $('#id_destination_account').on('change', function () {
+            // Obtiene el valor (ID) de la cuenta seleccionada
+            var selectedAccountId = $(this).val();
+            
+            // Actualiza el valor del campo oculto
+            $('#selected_account_id').val(selectedAccountId);
+        });
+    });
+</script>
+
+<script>
+    // Obtén una referencia al formulario y al botón de confirmación
+    const depositForm = document.getElementById('deposit-form');
+    const confirmDepositBtn = document.getElementById('confirm-deposit-btn');
+
+    // Agrega un controlador de eventos al botón de confirmación
+    confirmDepositBtn.addEventListener('click', function() {
+        // Muestra una ventana emergente de confirmación
+        const isConfirmed = window.confirm('¿Estás seguro de realizar el Retiro?');
+        
+        // Si el usuario confirma, envía el formulario
+        if (isConfirmed) {
+            depositForm.submit();
+        }
+    });
+</script>
+
+{% endblock content %}
+

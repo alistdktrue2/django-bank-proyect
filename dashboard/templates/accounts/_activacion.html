@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+{% if request.user.is_superuser %}
+
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Customers</div>
+
+
+<div class="title-1"><i class="fas fa-user"></i>Active Account</div>
+<div class="title-line"></div>
+{% if request.user.is_superuser %}
+<a class="add-button" href="{% url 'admin_panel' %}"><i class="fa fa-users"></i>  Ver Clientes</a>
+{% endif %}
+
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="content-center">
+</div>
+<!-- <form class="search-form">
+    <ul>
+        <li class="space-between"><input class="form-control" type="text" name="name" placeholder="Name"></li>
+        <li class="space-between"><input class="form-control" type="text" name="email" placeholder="Email"></li>
+        <li class="space-between"><input class="form-control" type="text" name="course" placeholder="Course"></li>
+        <button class="search-btn" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </ul>
+</form> -->
+
+<div class="table-responsive table-shadow table-light table-striped m-0 mt-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th> Account N°. </th>
+                <th> Full Name </th>
+                <th> Email </th>
+                <th> Active </th>
+                <th> Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ user.id }}</td> 
+                <td>{{ user.bankaccount.etiqueta }}</td> {# Acceder al número de cuenta del usuario actual #}
+                <td>{{ user.nombre_completo }}</td> {# Mostrar el nombre completo del usuario #}
+                <td>{{ user.email }}</td>
+                <td>{{ user.bankaccount.active }}</td>
+                <!-- Aquí puedes agregar más celdas de datos según tus necesidades -->
+                {% if request.user.is_superuser %}
+                <td>
+                    <div class="update-delete">
+                        <label class="switch switch-text switch-success switch-pill" style="float: right;">
+                            <input type="checkbox" class="switch-input"
+                                {% if user.bankaccount.active %}checked="true"{% endif %}
+                                data-user-id="{{ user.id }}" data-action-url="{% url 'toggle_account' user.id %}">
+                            <span data-on="On" data-off="Off" class="switch-label"></span>
+                            <span class="switch-handle"></span>
+                        </label>
+                    </div>
+                </td>
+                {% endif %}
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+{% endif %}
+
+{% endblock content %}
+

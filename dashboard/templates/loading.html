@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cbank Loading...</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles_load.scss' %}">
+    <style>
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .bounceball {
+            animation: bounce 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class="bounceball">
+            <img src="{% static 'images/logoSmartConsulting.png' %}" alt="Profile Image" width="160">
+        </div>
+    </div>
+</body>
+<script>
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            window.location.href = '/home/';
+        }, 4000);
+    });
+</script>
+</html>

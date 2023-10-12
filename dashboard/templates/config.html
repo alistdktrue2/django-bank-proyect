@@ -1,0 +1,14 @@
+{% load static %}
+<main class="d-flex flex-column align-items-center">
+    <h1>Configuración</h1>
+    <p>TAG-00001</p>
+    <div class="perfil-input-group mb-3 d-flex flex-column align-items-center">
+        <img src="{% static 'images/perfil2.jpg' %}" width="60px" height="60px" class="rounded mx-auto d-block" alt="perfil">
+        <input type="file" class="form-control" id="inputGroupFile02">
+        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+        <input type="text" class="form-control" placeholder="Dirección" aria-label="Dirección">
+        <input type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono">
+    </div>
+    <button type="button" class="btn btn-outline-success">Actualizar</button>
+</main>

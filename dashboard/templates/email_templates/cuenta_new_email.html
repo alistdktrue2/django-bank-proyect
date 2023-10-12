@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Estilos CSS aquí */
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <a href="{% url 'home' %}"><img src="{% static 'images/SmartConsultingHorizontal.png' %}" width="150px" alt="Logo Django LMS"></a>
+        </div>
+        </header>
+    <main>
+        <p>Hola {{ nombre }},</p>
+        <p>Hemos creado su cuenta exitosamente, esperando por la activación de su cuenta.</p>
+   
+    </main>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+</body>
+</html>

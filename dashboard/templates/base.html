@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %}Smart Consulting APP{% endblock title %}</title>
+
+    <!-- <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all"> -->
+
+    <!-- <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"> -->
+
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    
+    <!-- <link rel="stylesheet" href="{% static 'css/styles2.css' %}"> -->
+
+    <!-- <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all"> -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"> -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/black.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+    <!-- <script src="https://js.stripe.com/v3/"></script> -->
+    {% block header %}{% endblock %}
+
+</head>
+
+<body>
+
+ 
+  {% include 'aside.html' %}
+    <div id="main">
+        {% include 'navbar.html' %}
+
+        <div class="container-fluid" id="main-content">
+            {% block content %}{% endblock content %}
+        </div>
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // Agrega un manejador de eventos para los cambios de estado en los botones de conmutación
+        $('.switch-input').on('change', function() {
+            const userId = $(this).data('user-id');
+            const actionUrl = $(this).data('action-url');
+            const isActive = this.checked;
+
+            // Crea un objeto JSON con el campo user_id
+            const data = {
+                user_id: userId,  // El servidor espera que se llame user_id
+                isActive: isActive
+            };
+            
+
+            // Muestra un mensaje de confirmación en un popunder
+            const confirmation = confirm(`¿Deseas activar/desactivar la cuenta para el usuario ${userId}?`);
+
+            if (confirmation) {
+                // Realiza una solicitud POST a la URL de acción para activar o desactivar la cuenta
+                $.ajax({
+                    url: actionUrl,
+                    type: 'POST',
+                    data: JSON.stringify(data),  // Envía el objeto JSON en el cuerpo de la solicitud
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'  // Asegúrate de reemplazar '{{ csrf_token }}' con el valor correcto
+                    },
+                    success: function(response) {
+                        // La solicitud se completó con éxito
+                        console.log('Cuenta activada/desactivada con éxito.');
+                        // Realiza la redirección aquí
+                        window.location.href = 'http://127.0.0.1:8000/admin_panel';
+                    },
+                    error: function() {
+                        // La solicitud falló
+                        console.error('Error al activar/desactivar la cuenta.');
+                    }
+                });
+            }
+        });
+
+        
+        
+
+    </script>
+
+    
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#primary-search').focus(function () {
+                $('#top-navbar').attr('class', 'dim');
+                $('#side-nav').css('pointer-events', 'none');
+                $('#main-content').css('pointer-events', 'none');
+            });
+            $('#primary-search').focusout(function () {
+                $('#top-navbar').removeAttr('class');
+                $('#side-nav').css('pointer-events', 'auto');
+                $('#main-content').css('pointer-events', 'auto');
+            });
+        })
+    </script>
+
+  {% block js %}
+  {% endblock js %}
+
+</body>
+
+</html>

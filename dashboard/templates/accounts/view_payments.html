@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+{% if request.user.is_superuser %}
+
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Customers</div>
+
+
+<div class="title-1"><i class="fas fa-user"></i>Autorizar Pagos</div>
+<div class="title-line"></div>
+{% if request.user.is_superuser %}
+<a class="add-button" href="{% url 'admin_out' %}"><i class="fa fa-users"></i>  Ver Pagos Pendientes</a>
+{% endif %}
+
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="content-center">
+</div>
+<!-- <form class="search-form">
+    <ul>
+        <li class="space-between"><input class="form-control" type="text" name="name" placeholder="Name"></li>
+        <li class="space-between"><input class="form-control" type="text" name="email" placeholder="Email"></li>
+        <li class="space-between"><input class="form-control" type="text" name="course" placeholder="Course"></li>
+        <button class="search-btn" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </ul>
+</form> -->
+
+<div class="table">
+    <table class="table-responsive table-shadow table-light">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>N°. transacción</th>
+                <th>N°. Cuenta</th>
+                <th>Nombre Completo</th>
+                <th>Concepto</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in pending_payments %}
+            <tr>
+                <td>{{ forloop.counter }}</td> 
+                <td>{{ payment.transaction_number }}</td> 
+                <td>{{ user.bankaccount.etiqueta }}</td> 
+                <td>{{ user.nombre_completo }}</td>
+                <td>{{ payment.concept }}</td>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.date }}</td>
+                <td>
+                    <form method="post" action="{% url 'view_payments' user.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="payment_ids" value="{{ payment.id }}">
+                        <button type="submit" name="action" value="authorize" class="btn btn-success">Autorizar</button>
+                        <button type="submit" name="action" value="reject" class="btn btn-danger">Rechazar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endif %}
+
+{% endblock content %}
+

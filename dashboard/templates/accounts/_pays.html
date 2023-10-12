@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+{% if request.user.is_superuser %}
+
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Customers</div>
+
+
+<div class="title-1"><i class="fas fa-user"></i>Autorizar Pagos</div>
+<div class="title-line"></div>
+{% if request.user.is_superuser %}
+<a class="add-button" href="{% url 'admin_out' %}"><i class="fa fa-users"></i>  Ver Pagos Pendientes</a>
+{% endif %}
+
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="content-center">
+</div>
+<!-- <form class="search-form">
+    <ul>
+        <li class="space-between"><input class="form-control" type="text" name="name" placeholder="Name"></li>
+        <li class="space-between"><input class="form-control" type="text" name="email" placeholder="Email"></li>
+        <li class="space-between"><input class="form-control" type="text" name="course" placeholder="Course"></li>
+        <button class="search-btn" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </ul>
+</form> -->
+
+<div class="table">
+    <table class="table-responsive table-shadow table-light">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th> N°. Cuenta </th>
+                <th> Nombre Completo</th>
+                <th> Email </th>
+                <th> Cuenta Activa </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ user.id }}</td> 
+                <td>{{ user.bankaccount.etiqueta }}</td> 
+                <td>{{ user.nombre_completo }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.bankaccount.active }}</td>
+
+   
+        </tbody>
+
+    </table>
+    <table class="table-responsive table-shadow table-light">
+        <thead>
+            <tr>
+                <th>N°. transacción</th>
+                <th>Banco</th>
+                <th>Nombre Completo</th>
+                <th>Tipo Cuenta</th>
+                <th>Teléfono</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Autorizar</th>
+                <th>Rechazar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction_number, transaction_data in transaction_dic.items %}
+            <tr>
+                <td>{{ transaction_data.transaction_number }}</td>
+                <td>
+                    {% for withdrawal in withdrawal_accounts %}
+                        {% if withdrawal.id == transaction_data.destination_account_id %}
+                            {{ withdrawal.institution_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td> <!-- Esto depende de tu modelo de datos y cómo deseas mostrar el nombre completo -->
+                    {% for withdrawal in withdrawal_accounts %}
+                        {% if withdrawal.id == transaction_data.destination_account_id %}
+                            {{ withdrawal.account_holder_name }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td> <!-- Aquí puedes mostrar el concepto y la cantidad según el transaction_data -->
+                    {% for withdrawal in withdrawal_accounts %}
+                        {% if withdrawal.id == transaction_data.destination_account_id %}
+                            {{ withdrawal.account_type }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for withdrawal in withdrawal_accounts %}
+                        {% if withdrawal.id == transaction_data.destination_account_id %}
+                            {{ withdrawal.identification_number }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {{ transaction_data.amount }}
+                </td>
+                <td>
+                    {{ transaction_data.date }}
+                </td>
+                <td>
+                    <form method="post" action="{% url 'activate_pay' user.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="approve">
+                        <input type="hidden" name="transaction_number" value="{{ transaction_data.transaction_number }}">
+                        <input type="hidden" name="amount" value="{{ transaction_data.amount }}">
+                        <button type="submit" class="btn btn-success">Aprobar</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="{% url 'activate_pay' user.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="reject">
+                        <input type="hidden" name="withdrawal_request_id" value="{{ pending.id }}">
+                        <button type="submit" class="btn btn-danger">Rechazar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endif %}
+
+{% endblock content %}
+

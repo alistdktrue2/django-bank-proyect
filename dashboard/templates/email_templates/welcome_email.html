@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Estilos CSS aquí */
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <a href="{% url 'home' %}"><img src="{% static 'images/SmartConsultingHorizontal.png' %}" width="150px" alt="Logo Django LMS"></a>
+        </div>
+        </header>
+    <main>
+        <p>Hola {{ nombre }},</p>
+        <p>Hemos recibido tu consulta y te responderemos pronto.</p>
+        <p>Tipo de consulta: {{ tipo_consulta }}</p>
+        <p>Mensaje: {{ mensaje }}</p>
+    </main>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+</body>
+</html>

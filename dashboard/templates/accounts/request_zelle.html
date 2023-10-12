@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+
+
+<div id="input-nav">
+    <a href="{% url 'home' %}" class="primary1">Home</a>
+    <i>&rsaquo;</i> Customers
+</div>
+
+<div class="title-1"><i class="fas fa-user"></i>Retiro</div>
+<div class="title-line"></div>
+
+<!-- Estiliza el saldo actual -->
+<div class="current-balance-container text-center mt-3">
+    <h3 class="current-balance">Tu saldo actual: ${{ current_balance }}</h3>
+</div>
+
+{% if request.user.is_superuser %}
+    <a class="add-button" href="{% url 'pays_list' %}">
+        <i class="fa fa-users"></i> Ver Clientes
+    </a>
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Envia un Zelle</h3>
+                    <form method="post" id="zelle-form">
+                        {% csrf_token %}
+                        
+                        <!-- Campos del usuario -->
+                        <div class="mb-3">
+                            <label for="id_amount" class="form-label">Cantidad a Enviar (USD)</label>
+                            <input type="number" name="amount" class="form-control" id="id_amount" required>
+                        </div>
+                        <!-- Otros campos del usuario... -->
+                    
+                        <!-- Contenedor para la cuenta de retiro -->
+                        <fieldset name="withdrawal_account">
+                            <!-- Checkbox para activar la cuenta de retiro -->
+                            <div class="mb-3">
+                                <input type="checkbox" name="use_withdrawal_account" id="use_withdrawal_account">
+                                <label for="use_withdrawal_account">Guardar Cuenta</label>
+                            </div>
+                            
+                            <!-- Campos de la cuenta de retiro -->
+                            <div class="mb-3">
+                                <label for="id_account_holder_name" class="form-label">Nombre del Titular</label>
+                                <input type="text" name="account_holder_name" class="form-control" id="id_account_holder_name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_phone_number" class="form-label">N°. Teléfono</label>
+                                <input type="text" name="phone_number" class="form-control" id="id_phone_number" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_identification_number" class="form-label">Correo Electrónico</label>
+                                <input type="email" name="identification_number" class="form-control" id="id_identification_number" required>
+                            </div>
+                        </fieldset>
+                    
+                        <!-- Botón para enviar el formulario -->
+                        <button type="submit" class="btn btn-primary btn-block" id="confirm-zelle-btn">Enviar Zelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Obtén una referencia al formulario y al botón de confirmación
+    const zelleForm = document.getElementById('zelle-form');
+    const confirmZelleBtn = document.getElementById('confirm-zelle-btn');
+
+    // Agrega un controlador de eventos al botón de confirmación
+    confirmZelleBtn.addEventListener('click', function() {
+        // Muestra una ventana emergente de confirmación
+        const isConfirmed = window.confirm('¿Estás seguro de realizar el Zelle?');
+        
+        // Si el usuario confirma, envía el formulario
+        if (isConfirmed) {
+            zelleForm.submit();
+        }
+    });
+</script>
+
+
+
+{% endblock content %}
+

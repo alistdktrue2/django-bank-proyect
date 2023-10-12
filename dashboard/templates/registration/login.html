@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %} Login{% endblock title %}</title>
+
+  <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all">
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  
+</head>
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+  .profile-pic-conf {
+      padding-top: 20px;
+      width: 180px; /* Cambia este valor para ajustar el tamaño deseado */
+      height: 60px; /* Cambia este valor para ajustar el tamaño deseado */
+      
+  }
+</style>
+
+
+<div id="login">
+  <h1 class="h1">
+    <label for="">
+      <a href="/home" class="logo"><img class="profile-pic-conf" src="{% static 'images/SmartConsultingHorizontal.png' %}" alt="Profile Image" ></a>
+    </label>
+  </h1>
+  <div class="login-title blue-gradient"><i class="fas fa-lock"></i>Sign in</div>
+
+  <form action="/login/" method="POST" id="login-form">{% csrf_token %}
+    <div class="form-group px-3">
+        <label for="email_or_username"><i class="fas fa-address-card"></i>Username or Email</label>
+        <input type="text" name="email_or_username" id="floatingInput" class="form-control" required>
+        <div id="message-wrapper"></div>
+    </div>
+    <div class="form-group px-3">
+        <label for="floatingPassword"><i class="fas fa-key"></i>Password</label>
+        <input type="password" name="password" id="password" class="form-control" required>
+    </div>
+    {% if form.errors %}
+          <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Invalid ID & Password.</span><br>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i><small>Entrar</small></button>
+  </form>
+  <br>
+  <a href="#" class="link">Forgot password ?</a>
+  <br>
+  <span> Don't have an account? </span><a href="{% url 'register' %}" class="link">Register</a>
+</div>
+{% endblock content %}
+
+{% block js %}
+
+<script>
+  $('#login-form').submit(function (e) {
+    // e.preventDefault();
+    $('#login-btn').addClass('disabled')
+    $('#login-btn').html(`<i class="fas fa-sign-in-alt"></i> Signining you in . . .`)
+  })
+
+  $("#username").on("input", function () {
+    username = $(this).val();
+
+    $.ajax({
+      url: "/accounts/ajax/validate-username/",
+      data: {
+        username: username
+      },
+      dataType: 'json',
+      success: function (data) {
+        if (data.is_taken) {
+          console.log(data.is_taken);
+          $('#message-wrapper').html(`<p class="my-2 text-danger"><span class="bg-error p-2"><b>${username}</b> already taken :( try another one </span></p>`)
+        }
+        else {
+          $('#message-wrapper').html(`<p class="my-2 text-success"><span class="bg-correct p-2"><b>${username}</b> is valid </span></p>`)
+        }
+      }
+
+    })
+  })
+</script>
+{% endblock %}

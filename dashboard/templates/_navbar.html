@@ -1,0 +1,36 @@
+{% load static %}
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center">
+
+    <h1 class="logo me-auto"><a href="/home"><img src="{% static 'images/SmartConsultingHorizontal.png' %}" alt="Profile Image"></a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+        <li><a class="nav-link scrollto" href="#solution-us">Servicios</a></li>
+        <li><a class="nav-link scrollto" href="#pricing">Precios</a></li>
+        <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+        {% if user.is_authenticated %}
+        <li class="li">
+            <a href="/dashboard" class="nav-link">Dashboard</a>
+        </li>
+        <li class="li">
+            <a href="/logout" class="nav-link">Logout</a>
+        </li>
+        {% else %}
+        <li class="li">
+          <button id="btnLogin-popup" class="btnLogin-popup"><a href="/login" class="nav-link">Login</a></button>
+        </li>
+        {% endif %}
+      </nav>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+    .profile-pic-conf {
+        border-radius: 50%; /* Hace que la imagen sea redonda */
+        width: 100px; /* Cambia este valor para ajustar el tamaño deseado */
+        height: 100px; /* Cambia este valor para ajustar el tamaño deseado */
+        object-fit: cover; /* Ajusta la imagen para que ocupe todo el espacio y se recorte si es necesario */
+    }
+</style>
+
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Account +</div>
+
+<p class="title-1"><i class="fa fa-user-plus"></i>Create Account</p>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <h1 class="lead p-2 bg-light">Registro</h1>
+            <div class="mb-3">
+              <label for="razon_social" class="form-label">{{ form.razon_social.label }}</label>
+              {{ form.razon_social }}
+              {{ form.razon_social.errors }}
+            </div>
+            <div class="mb-3">
+              <label for="username" class="form-label">{{ form.username.label }}</label>
+              {{ form.username }}
+              {{ form.username.errors }}
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">{{ form.email.label }}</label>
+              {{ form.email }}
+              {{ form.email.errors }}
+            </div>
+            <div class="mb-3">
+              <label for="password1" class="form-label">{{ form.password1.label }}</label>
+              {{ form.password1 }}
+              {{ form.password1.errors }}
+            </div>
+            <div class="mb-3">
+              <label for="password2" class="form-label">{{ form.password2.label }}</label>
+              {{ form.password2 }}
+              {{ form.password2.errors }}
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h1 class="lead p-2 bg-light">Información Personal</h1>
+            <div class="mb-3">
+                <label for="nombre_completo_id" class="form-label">{{ form.nombre_completo.label }}</label>
+                {{ form.nombre_completo }}
+                {{ form.nombre_completo.errors }}
+            </div>
+            <div class="mb-3">
+                <label for="address_id" class="form-label">{{ form.address.label }}</label>
+                {{ form.address }}
+                {{ form.address.errors }}
+            </div>
+            <div class="mb-3">
+                <label for="mobile" class="form-label">{{ form.mobile.label }}</label>
+                {{ form.mobile }}
+                {{ form.mobile.errors }}
+            </div>
+            <div class="mb-3">
+                <label for="rif" class="form-label">{{ form.rif.label }}</label>
+                {{ form.rif }}
+                {{ form.rif.errors }}
+            </div>
+            <div class="mb-3">
+                <label for="cedula" class="form-label">{{ form.cedula.label }}</label>
+                {{ form.cedula }}
+                {{ form.cedula.errors }}
+            </div>
+            <div class="mb-3">
+                <label for="monto_promedio" class="form-label">{{ form.monto_promedio.label }}</label>
+                <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="monto_promedio">
+                    <span class="fas fa-minus"></span>
+                    </button>
+                </span>
+                {{ form.monto_promedio }}
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="monto_promedio">
+                    <span class="fas fa-plus"></span>
+                    </button>
+                </span>
+                </div>
+                {{ form.monto_promedio.errors }}
+            </div>
+        
+        </div>
+    </div>
+    <center>
+        <button class="btn btn-outline-primary" type="submit">Create</button>
+    </center>
+</form>
+
+
+{% endblock content %}

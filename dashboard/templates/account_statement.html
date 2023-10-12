@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% block title %} Dashboard  {% endblock title %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+<div id="input-nav" class="p-2"><a href="/"> Home </a> Dashboard</div>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'error' %}
+<div class="alert alert-danger">
+	<i class="fas fa-exclamation-circle"></i>{{ message }}
+</div>
+{% else %}
+<div class="alert alert-success">
+	<i class="fas fa-check-circle"></i>{{ message }}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<style>
+	.chart-wrap {
+		position: relative;
+		padding: 1rem;
+		transition: .5s;
+		background-color: #fff;
+		border-radius: 10px;
+	}
+
+	.fa-expand-alt {
+		display: none;
+		position: absolute;
+		top: .5rem;
+		right: .5rem;
+		padding: .5rem;
+		cursor: pointer;
+		transition: .3s;
+	}
+
+	.fa-expand-alt:hover {
+		background-color: #f1f1f1;
+	}
+
+	.chart-wrap:hover {
+		box-shadow: 0 0 0 1px inset #666;
+	}
+
+	.chart-wrap:hover .fa-expand-alt {
+		display: block;
+	}
+
+	.full-screen {
+		transform: translateY(100%);
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 999;
+		max-width: 100%;
+		max-height: 100%;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		background-color: #fff;
+		/* For Internet Explorer */
+		box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5) !important;
+		/* For other browsers */
+		box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5) !important;
+		transform-origin: bottom left;
+		animation: popupAnim forwards alternate .5s ease-in-out;
+		overflow: auto;
+	}
+
+	.full-screen .fa-expand-alt {
+		display: block;
+	}
+
+	@keyframes popupAnim {
+		from {
+			transform: translateY(100%);
+		}
+
+		to {
+			transform: translateY(0);
+		}
+	}
+
+	.users-count .card-count {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: #fff;
+	}
+
+	.users-count .card-count h2 {
+		font-weight: 1000;
+	}
+
+	.users-count .card-count h3 {
+		flex: 0 0 40%;
+		border-right: 1px solid rgb(230, 230, 230);
+	}
+
+	.users-count .card-count h3 i {
+		display: inline-flex;
+		width: 60px;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+	}
+
+	.bg-light-aqua {
+		background-color: rgba(86, 224, 224, 0.5);
+		box-shadow: 0 0 0 10px rgba(86, 224, 224, 0.1);
+		color: #fff;
+	}
+
+	.bg-light-orange {
+		background-color: rgba(253, 174, 28, 0.5);
+		box-shadow: 0 0 0 10px rgba(253, 174, 28, 0.1);
+		color: #fff;
+	}
+
+	.bg-light-purple {
+		background-color: rgba(203, 31, 255, 0.5);
+		box-shadow: 0 0 0 10px rgba(203, 31, 255, 0.1);
+		color: #fff;
+	}
+
+	.bg-light-red {
+		background-color: rgba(255, 19, 157, 0.5);
+		box-shadow: 0 0 0 10px rgba(255, 19, 157, 0.1);
+		color: #fff;
+	}
+
+	.activities ul {
+		padding-left: .5rem;
+	}
+
+	.activities ul li {
+		list-style-type: disc;
+	}
+
+ 
+    /* Estilo general de la página */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f3f3;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .title-1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #007BFF;
+    }
+
+    /* Estilos para la tabla */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
+
+    .btn-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .action-btn {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+</style>
+
+
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="title-1">Estado de Cuenta</h1>
+    </div>
+
+    <h2>Información de la cuenta</h2>
+    {% if bank_account %}
+        <p>Nombre del titular: {{ bank_account.user.username }}</p>
+        <p>Saldo actual: ${{ bank_account.get_balance }}</p>
+    {% else %}
+        <p>No se encontró una cuenta bancaria asociada a este usuario.</p>
+    {% endif %}
+
+    <h2>Detalles de Transacciones</h2>
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Tipo de Transacción</th>
+            <th>Monto</th>
+            <th>Saldo Restante</th>
+        </tr>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.get_transaction_type_display }}</td>
+                <td>${{ transaction.amount }}</td>
+                <td>${{ transaction.balance }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Botón para acciones -->
+    <div class="btn-container">
+        <button class="action-btn" onclick="generatePDF()">Guardar como PDF</button>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}
+
+{% block js %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    // Función para generar el PDF
+    function generatePDF() {
+        const doc = new jsPDF();
+        doc.text("Estado de Cuenta", 10, 10);
+        doc.autoTable({ html: 'table' });
+        doc.save('estado_de_cuenta.pdf');
+    }
+</script>
+
+
+
+{% endblock %}

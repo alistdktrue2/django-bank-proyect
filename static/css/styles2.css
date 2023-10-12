@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+/* Reset CSS*/
+
+:root {
+    --negro: #393939;
+    --tipo-principal: Helvetica, Arial, sans-serif;
+    --tipo-secundaria: Verdana;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --negro: #ececec;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: baseline;
+}
+
+img,
+picture,
+video,
+iframe,
+figure {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center center;
+    object-position: center center;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+p a {
+    display: inline;
+}
+
+li {
+    list-style-type: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+strong,
+blockquote,
+i,
+b,
+u,
+em {
+    font-size: 1em;
+    font-weight: inherit;
+    font-style: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+
+::-moz-selection {
+    background-color: var(--negro);
+    color: var(--blanco);
+}
+
+::selection {
+    background-color: var(--negro);
+    color: var(--blanco);
+}
+
+
+
+table,
+tr,
+td {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+svg {
+    width: 100%;
+    display: block;
+    fill: currentColor;
+}
+
+body {
+    min-height: 100vh;
+    font-size: 100%;
+    font-family: var(--tipo-principal);
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* Fin del Reset */
+
+/* Code Login and Register */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('/static/images/Background3.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+
+header {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    padding: 1em;
+
+    display: flex;
+    flex-flow: row wrap;
+    top: 0;
+    left: 0;
+    padding: 20px 40px;
+    opacity: 0.9;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: #034255;
+    user-select: none;
+}
+
+.nav a {
+    position: relative;
+    font-size: 1.1em;
+    color: #034255;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #f50707;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.nav a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+
+}
+
+.nav .btnLogin-popup {
+    width: 130px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #f50707;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #034255;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+
+}
+
+.nav .btnLogin-popup:hover {
+    background: #f50707;
+    color: #fff;
+}
+
+
+
+
+/* Código Menu */
+
+.header .logo {
+    width: 140px;
+}
+
+
+
+.header .svg {
+    width: 2em;
+    height: 2em;
+    fill: #f50707;
+    background-color: #fff;
+    display: none;
+
+}
+
+
+
+.header .ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.header .li {
+    margin: 0 .5em;
+}
+
+@media screen and (max-width:480px) {
+    .header .svg {
+        display: block;
+        cursor: pointer;
+    }
+
+    .header .nav {
+        width: 100%;
+        height: 0;
+        pointer-events: none;
+        overflow: hidden;
+        transition: all .5s ease;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .header .nav.activo {
+        height: 50vh;
+        pointer-events: auto;
+        background-color: white;
+    }
+
+    .header .nav.activo.ul {
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+    }
+
+
+    .header .ul {
+        flex-direction: column;
+    }
+
+    .header .li {
+        margin: 1rem 0;
+    }
+}
+
+
+
+
+.container {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Opcional, para centrar verticalmente */
+}
+
+.container.active {
+    display: none;
+    
+}
+
+.vertical-menu {
+    background-color: white;
+}
+.vertical-menu li a {
+    color: black;
+}
+
+.mt-3 {
+    color: black;
+}
+
+
+
+
+.perfil {
+    max-width: 100px;
+
+}
+
+.col-9 {
+    background-color:darkgray;
+    
+}
+
+
+
+header h2 {
+    color: #222;
+}
+
+header label span {
+    font-size: 1.7rem;
+    padding-right: 1rem;
+}
+
+
+.user-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.user-wrapper img{
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.user-wrapper small {
+    display: inline-block;
+    color:var(--text-grey)
+}
+
+
+.wrapper {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+}

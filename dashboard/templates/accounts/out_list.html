@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<div id="input-nav">
+    <a href="{% url 'home' %}" class="btn btn-primary">
+        <i class="fas fa-home"></i> Home
+    </a>
+    <i class="fas fa-angle-right"></i> Customers
+</div>
+
+
+<div class="title-1"><i class="fas fa-user"></i> Retiros pendientes</div>
+<hr class="title-line">
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            <i class="fas fa-{% if message.tags == 'error' %}exclamation-circle{% else %}check-circle{% endif %}"></i>{{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
+<div class="table-responsive mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Account N°</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Retiros</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ forloop.counter }}</td> 
+                <td>{{ user.bankaccount.etiqueta }}</td>
+                <td><a href="{% url 'activate_pay' user.id %}">{{ user.nombre_completo }}</a></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.pending_count }}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

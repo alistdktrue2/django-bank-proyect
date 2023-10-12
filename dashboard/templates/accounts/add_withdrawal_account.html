@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">Home</a> <i>&rsaquo;</i> Customers</div>
+
+<div class="title-1"><i class="fas fa-user"></i>Retiro</div>
+<div class="title-line"></div>
+
+
+<a class="add-button" href="{% url 'withdrawal_account' %}">
+    <i class="fa fa-users"></i> Ver Cuentas
+</a>
+
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Agrega una card con sombra y estilos modernos -->
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Agregar cuenta de retiro</h2>
+                    <!-- Formulario dentro de la card -->
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="form-group">
+                            <label for="{{ form.account_holder_name.id_for_label }}">Nombre del titular</label>
+                            {{ form.account_holder_name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.institution_name.id_for_label }}">Nombre de la institución</label>
+                            {{ form.institution_name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.account_type.id_for_label }}">Tipo de cuenta</label>
+                            {{ form.account_type }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.identification_number.id_for_label }}">Número de Cuenta</label>
+                            {{ form.identification_number }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.phone_number.id_for_label }}">Número de teléfono</label>
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="text-center"> <!-- Centra el botón -->
+                            <button type="submit" class="btn btn-primary btn-block">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Obtén una referencia al formulario y al botón de confirmación
+    const depositForm = document.getElementById('deposit-form');
+    const confirmDepositBtn = document.getElementById('confirm-deposit-btn');
+
+    // Agrega un controlador de eventos al botón de confirmación
+    confirmDepositBtn.addEventListener('click', function() {
+        // Muestra una ventana emergente de confirmación
+        const isConfirmed = window.confirm('¿Estás seguro de realizar el depósito?');
+        
+        // Si el usuario confirma, envía el formulario
+        if (isConfirmed) {
+            depositForm.submit();
+        }
+    });
+</script>
+
+
+
+
+{% endblock content %}
+

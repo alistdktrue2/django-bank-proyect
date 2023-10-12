@@ -1,0 +1,54 @@
+{% load static %}
+<div class="main-content">
+    <header class="header">
+      <!-- Contenido del encabezado-->
+      <h1 class="h1">
+        <label for="">
+          <a href="/home" class="logo"><img src="{% static 'images/SmartConsultingHorizontal.png' %}" alt="Profile Image" ></a>
+        </label>
+      </h1>
+      
+      <button class="button">
+        <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </button>
+
+      <nav class="nav">
+        <ul class="ul">
+          <li class="li">
+            <a href="#">Contacto</a>   
+          </li>
+        </ul>
+        <ul class="ul">
+          <li class="li">
+            <a href="#">Precios</a>   
+          </li>
+        </ul>
+        <ul class="ul">
+          <li class="li">
+            <a href="#">Servicios</a>   
+          </li>
+        </ul>
+        {% if user.is_authenticated %}
+        <ul class="ul">
+          <li class="li">
+              <a href="/dashboard" class="nav-link">Dashboard</a>
+          </li>
+        </ul>
+        <ul class="ul">
+          <li class="li">
+              <a href="/logout" class="nav-link">Logout</a>
+          </li>
+        </ul>
+        {% else %}
+        <ul class="ul">
+          <li class="li">
+            <button class="btnLogin-popup"><a href="/login" class="nav-link">Login</a></button>
+          </li>
+        </ul>
+        {% endif %}
+      </nav>
+    </header>
+
+  </div>

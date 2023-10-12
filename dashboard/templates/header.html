@@ -1,0 +1,16 @@
+{% load static %}
+<header>
+    <h2>
+        <label for="nav-toggle">
+            <span class="las la-bars"></span>
+        </label>
+        Dashboard
+    </h2>
+    <div class="user-wrapper">
+        <img src="{% static 'images/perfil2.jpg' %}" width="30px" height="30px" alt="Profile Image">
+        <div>
+            <h4>{{ username }}</h4>
+            <small>TAG-00001</small>
+        </div>
+    </div>
+</header>
