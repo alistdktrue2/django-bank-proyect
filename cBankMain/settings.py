@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-import posixpath
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,6 +9,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 DEBUG = 'RENDER' not in os.environ
 
 TEMPLATE_DEBUG = DEBUG
+
 
 ALLOWED_HOSTS = []
 
@@ -72,7 +72,7 @@ WSGI_APPLICATION = "cBankMain.wsgi.application"
 # Configuración de la base de datos predeterminada
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres@localhost/postgres',
+        default='postgresql://postgres:postgres@localhost/postgres',
         conn_max_age=600
     )
 }
