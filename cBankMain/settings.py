@@ -67,21 +67,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "cBankMain.wsgi.application"
 
-#DATABASE_URL = DATABASE_URL='postgres://usuario:contraseña@localhost:5432/database_bank'
+
 
 # Configuración de la base de datos predeterminada
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost/postgres',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'database_bank',
+        'USER': 'postgres',
+        'PASSWORD': '5179/*',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
-# Usa dj_database_url para cargar la configuración de la base de datos desde la URL si está disponible,
-# de lo contrario, utiliza la configuración predeterminada.
-#DATABASES = {
-    #'default': dj_database_url.config(default=DEFAULT_DB_CONFIG if DATABASE_URL is None else DATABASE_URL)
-#}
+DATABASES["default"] = dj_database_url.parse("postgres://database_bank_user:E7jvQkOhYKPvSFlzDD9t47ooARUE4doD@dpg-ckk4fd6mlsqc73bp24r0-a.oregon-postgres.render.com/database_bank")
 
 
 
