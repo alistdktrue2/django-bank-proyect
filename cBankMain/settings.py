@@ -23,6 +23,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 INSTALLED_APPS = [
+    "render.apps.RenderConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -72,8 +73,7 @@ WSGI_APPLICATION = "cBankMain.wsgi.application"
 # Configuración de la base de datos predeterminada
 DATABASES = {
     'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        default='postgres://database_bank_user:E7jvQkOhYKPvSFlzDD9t47ooARUE4doD@dpg-ckk4fd6mlsqc73bp24r0-a.oregon-postgres.render.com/database_bank',
         conn_max_age=600
     )
 }
