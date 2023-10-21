@@ -14,7 +14,7 @@ DEBUG = os.environ.get("DEBUG","False") == "True"
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 # change the default user models to our custom model
 
