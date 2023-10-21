@@ -4,15 +4,17 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-rcrvx-j^bi+oz+3@9d&ub2#r4%@zzmy7=n1%35n0-^-+hep_0u')
+
 
 DEBUG = os.environ.get("DEBUG","False") == "True"
 
 
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+#ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
+ALLOWED_HOSTS = []
 
 # change the default user models to our custom model
 
@@ -81,8 +83,15 @@ DATABASES = {
 }
 
 
-database_url=os.environ.get("DATABASE_URL")
+try:
+    database_url=os.environ.get("DATABASE_URL")
+except:
+    pass
+database_url="postgres://bank_data_base_user:pJ6cuYdLUqjvD0jiwqzajUznDpQFvKqf@dpg-ckpt37o1hnes73f3v7dg-a.oregon-postgres.render.com/bank_data_base"
+
 DATABASES["default"] = dj_database_url.parse(database_url)
+
+
 
 #DATABASES["default"] = dj_database_url.parse("postgres://database_bank_user:E7jvQkOhYKPvSFlzDD9t47ooARUE4doD@dpg-ckk4fd6mlsqc73bp24r0-a.oregon-postgres.render.com/database_bank")
 
