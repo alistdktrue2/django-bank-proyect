@@ -70,7 +70,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     nombre_completo = models.CharField(max_length=255)  # Nombre completo
     rif = models.CharField(max_length=15)  # RIF comercial o personal
     cedula = models.CharField(max_length=15)  # Cédula de identidad
-    monto_promedio = models.DecimalField(max_digits=10, decimal_places=2)  # Monto mensual promedio
+    monto_promedio = models.DecimalField(max_digits=10, decimal_places=2,null=True)  # Monto mensual promedio
     address = models.CharField(max_length=60, blank=True, null=True)  # Dirección
     state = models.CharField(max_length=50)  # Estado
     city = models.CharField(max_length=50)  # Ciudad
