@@ -83,11 +83,10 @@ DATABASES = {
 }
 
 
-try:
-    database_url=os.environ.get("DATABASE_URL")
-except:
-    pass
-database_url="postgres://bank_data_base_user:pJ6cuYdLUqjvD0jiwqzajUznDpQFvKqf@dpg-ckpt37o1hnes73f3v7dg-a.oregon-postgres.render.com/bank_data_base"
+
+database_url=os.environ.get("DATABASE_URL")
+
+#database_url="postgres://bank_data_base_user:pJ6cuYdLUqjvD0jiwqzajUznDpQFvKqf@dpg-ckpt37o1hnes73f3v7dg-a.oregon-postgres.render.com/bank_data_base"
 
 DATABASES["default"] = dj_database_url.parse(database_url)
 
