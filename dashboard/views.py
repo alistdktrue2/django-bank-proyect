@@ -148,8 +148,10 @@ def register_view(request):
             new_user.email = form.cleaned_data['email']
             # Set the username to be the same as the email address
             new_user.username = form.cleaned_data['email']
-            new_user.monto_promedio = form.cleaned_data['monto_promedio']
-            
+            monto_promedio = form.cleaned_data['monto_promedio']
+            if monto_promedio is None:
+                monto_promedio = 0.0 
+
             new_user.save()
 
             user = User.objects.create_user(username='nuevo_usuario', email='nuevo_usuario@example.com', password='contrasena')
