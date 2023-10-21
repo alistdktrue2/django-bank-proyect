@@ -56,6 +56,8 @@ class ClienteRegistrationForm(UserCreationForm):
         decimal_places=2,
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         label="Monto Mensual Promedio($)",
+        min_value=0.01,
+        max_value=99999.99,
     )
     
     address = forms.CharField(
