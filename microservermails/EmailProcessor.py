@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 from Google import Create_Service
 from datetime import datetime
 from email.utils import parsedate_to_datetime
-
+from ..dashboard.models import BankAccount, Deposit
 
 
 class EmailProcessor:

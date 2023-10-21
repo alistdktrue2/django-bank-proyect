@@ -37,7 +37,6 @@ from collections import defaultdict
 
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
-@login_required
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
