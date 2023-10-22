@@ -14,7 +14,9 @@
           <h1>Pagos rápidos y sencillos</h1>
           <h2>Envía y Recibe dólares a través de Zelle, sin cuentas en EE. UU.</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
+            {% if not request.user.is_authenticated %}
             <a href="/register/" class="btn-get-started scrollto">Crea tu Cuenta Ahora!</a>
+            {% endif %}
             <a href="#" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Tutorial Video</span></a>
           </div>
         </div>
