@@ -105,7 +105,7 @@ a.text-orange:hover {
 }
 
 .blue-text {
-  color: #2196f3 !important;
+  color: #dc3545 !important;
 }
 
 .bg-gray {
@@ -121,7 +121,7 @@ a.text-orange:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #2196f3;
+  color: #dc3545;
   padding: 0.5rem 1rem;
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -1826,7 +1826,7 @@ a {
 }
 
 .link {
-  color: #2196f3;
+  color: #dc3545;
   margin-top: 40px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
