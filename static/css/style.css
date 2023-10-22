@@ -834,15 +834,15 @@ li {
 
 .content .content-a a:hover {
   color: #fff;
-  background-color: #007bff;
-  border: 1px solid #007bff;
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .content .content-a a:focus,
 .content .content-a a.focus {
-  color: #007bff;
+  color: #dc3545;
   background-color: #fff;
   -webkit-transition: 0s;
   transition: 0s;

@@ -177,7 +177,7 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #f50707;
+  color: #dc3545;
 }
 
 
@@ -185,7 +185,7 @@ h6 {
   width: 130px;
   height: 40px;
   background: transparent;
-  border: 2px solid #f50707;
+  border: 2px solid #dc3545;
   outline: none;
   border-radius: 6px;
   cursor: pointer;
@@ -198,7 +198,7 @@ h6 {
 }
 
 #navbar > ul > li .btnLogin-popup:hover {
-  background: #f50707;
+  background: #dc3545;
   color: #fff;
 }
 
