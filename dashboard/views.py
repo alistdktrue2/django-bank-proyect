@@ -453,7 +453,8 @@ def toggle_account(request, user_id):
                 
             messages.success(request, 'Cuenta modificada correctamente. ' + action_message)
             
-            return redirect('admin_panel')  # Redirige solo si no es una solicitud AJAX
+            # Renderiza la plantilla HTML con los datos del usuario
+            return render(request, 'accounts/_activacion.html', {'user': user})  # Redirige solo si no es una solicitud AJAX
         
         except User.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Usuario no encontrado'})
