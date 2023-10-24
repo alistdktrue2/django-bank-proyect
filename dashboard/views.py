@@ -148,7 +148,7 @@ def register_view(request):
             new_user.email = form.cleaned_data['email']
             # Set the username to be the same as the email address
             new_user.username = form.cleaned_data['email']
-            
+            monto_promedio = form.cleaned_data['monto_promedio']
             if monto_promedio is None:
                 monto_promedio = 0.0 
 
@@ -449,12 +449,17 @@ def toggle_account(request, user_id):
                     html_message=html_message,  # Usa el mismo mensaje HTML que al usuario
                     fail_silently=False,
                 )
-
+                
+                
+                
+                
                 
             messages.success(request, 'Cuenta modificada correctamente. ' + action_message)
             
-            # Renderiza la plantilla HTML con los datos del usuario
-            return render(request, 'accounts/_activacion.html', {'user': user})  # Redirige solo si no es una solicitud AJAX
+            if request.is_ajax():
+                return JsonResponse({'status': 'success', 'message': action_message})
+            else:
+                return redirect('admin_panel')  # Redirige solo si no es una solicitud AJAX
         
         except User.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Usuario no encontrado'})
@@ -597,7 +602,7 @@ def activate_account(request, account_id):
             user.bankaccount.save()
 
             # Redirige de nuevo a la misma página
-            return redirect('activate_account', account_id=account_id)
+            return render(request, 'accounts/_activacion.html', {'user': user}) 
 
         # Renderiza la plantilla HTML con los datos del usuario
         return render(request, 'accounts/_activacion.html', {'user': user})
