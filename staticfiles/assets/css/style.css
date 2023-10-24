@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-  color: #73c5eb;
+  color: #dc3545;
   text-decoration: none;
 }
 
@@ -177,7 +177,7 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #f50707;
+  color: #dc3545;
 }
 
 
@@ -185,7 +185,7 @@ h6 {
   width: 130px;
   height: 40px;
   background: transparent;
-  border: 2px solid #f50707;
+  border: 2px solid #dc3545;
   outline: none;
   border-radius: 6px;
   cursor: pointer;
@@ -198,7 +198,7 @@ h6 {
 }
 
 #navbar > ul > li .btnLogin-popup:hover {
-  background: #f50707;
+  background: #dc3545;
   color: #fff;
 }
 
@@ -300,7 +300,7 @@ h6 {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #fff;
+  color: #848484;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -309,7 +309,7 @@ h6 {
 }
 
 .mobile-nav-toggle.bi-x {
-  color: #fff;
+  color: #848484;
 }
 
 @media (max-width: 991px) {
@@ -414,7 +414,7 @@ h6 {
 #hero {
   width: 100%;
   height: 80vh;
-  background: #37517e;
+  background: #f4f6f8;
 }
 
 #hero .container {
@@ -426,11 +426,11 @@ h6 {
   font-size: 48px;
   font-weight: 700;
   line-height: 56px;
-  color: #fff;
+  color: #dc3545;
 }
 
 #hero h2 {
-  color: rgba(255, 255, 255, 0.6);
+  color: #343a40;
   margin-bottom: 50px;
   font-size: 24px;
 }
@@ -445,12 +445,14 @@ h6 {
   border-radius: 50px;
   transition: 0.5s;
   margin: 10px 0 0 0;
-  color: #fff;
-  background: #47b2e4;
+  color: #034255;
+  border: 2px solid;
+  border-color: #dc3545;
 }
 
 #hero .btn-get-started:hover {
-  background: #209dd8;
+  color: #fff;
+  background: #dc3545;
 }
 
 #hero .btn-watch-video {
@@ -459,20 +461,20 @@ h6 {
   align-items: center;
   transition: 0.5s;
   margin: 10px 0 0 25px;
-  color: #fff;
+  color: #034255;
   line-height: 1;
 }
 
 #hero .btn-watch-video i {
   line-height: 0;
-  color: #fff;
+  color: #034255;
   font-size: 32px;
   transition: 0.3s;
   margin-right: 8px;
 }
 
 #hero .btn-watch-video:hover i {
-  color: #47b2e4;
+  color: #dc3545;
 }
 
 #hero .animated {
@@ -643,7 +645,7 @@ section {
   left: 0;
   top: 2px;
   font-size: 20px;
-  color: #47b2e4;
+  color: #034255;
   line-height: 1;
 }
 
@@ -661,7 +663,7 @@ section {
   border-radius: 4px;
   transition: 0.3s;
   line-height: 1;
-  color: #47b2e4;
+  color: #dc3545;
   animation-delay: 0.8s;
   margin-top: 6px;
   border: 2px solid #47b2e4;
@@ -683,7 +685,7 @@ section {
 .why-us .content h3 {
   font-weight: 400;
   font-size: 34px;
-  color: #37517e;
+  color: #034255;
 }
 
 .why-us .content h4 {

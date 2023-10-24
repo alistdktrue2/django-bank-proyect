@@ -101,11 +101,11 @@ a.text-orange:hover {
 }
 
 .blue-gradient {
-  background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+  background: linear-gradient(40deg, #45cafc, #dc3545) !important;
 }
 
 .blue-text {
-  color: #2196f3 !important;
+  color: #dc3545 !important;
 }
 
 .bg-gray {
@@ -121,7 +121,7 @@ a.text-orange:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #2196f3;
+  color: #dc3545;
   padding: 0.5rem 1rem;
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -150,7 +150,7 @@ a.text-orange:hover {
 .table input:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #80bdff;
+  border-color: #dc3545;
   outline: 0;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
           box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -165,7 +165,7 @@ a.text-orange:hover {
   font-size: 16px;
   padding: 10px;
   margin: 10px 0;
-  color: #2196f3;
+  color: #dc3545;
 }
 
 #main {
@@ -518,7 +518,7 @@ li {
   -webkit-margin-start: -10px;
   z-index: 90;
   /*padding: 0.4rem 1rem;*/
-  background: #f5f5f5;
+  background: #fff;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
   -webkit-transition: 0.3s;
@@ -834,15 +834,15 @@ li {
 
 .content .content-a a:hover {
   color: #fff;
-  background-color: #007bff;
-  border: 1px solid #007bff;
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .content .content-a a:focus,
 .content .content-a a.focus {
-  color: #007bff;
+  color: #dc3545;
   background-color: #fff;
   -webkit-transition: 0s;
   transition: 0s;
@@ -971,12 +971,12 @@ hr {
 }
 
 #side-nav ul li a:hover {
-  color: #007bff;
+  color: #dc3545;
   background: rgba(0, 111, 255, 0.05);
 }
 
 #side-nav ul li.active a {
-  background: #006fff;
+  background: #dc3545;
   color: #fff;
 }
 
@@ -1826,7 +1826,7 @@ a {
 }
 
 .link {
-  color: #2196f3;
+  color: #dc3545;
   margin-top: 40px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
