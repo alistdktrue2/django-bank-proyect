@@ -108,7 +108,7 @@ class ClienteRegistrationForm(UserCreationForm):
         user.is_student = False  # Los clientes no son estudiantes, así que establece esta bandera en False
         user.address = self.cleaned_data.get('address')
         user.mobile = self.cleaned_data.get('mobile')
-
+        user.monto_promedio = self.cleaned_data.get('monto_promedio')
         bank_account_number = self.generate_unique_bank_account_number()
 
         user.username = user.username.lower()
