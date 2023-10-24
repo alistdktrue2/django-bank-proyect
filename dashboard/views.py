@@ -449,17 +449,11 @@ def toggle_account(request, user_id):
                     html_message=html_message,  # Usa el mismo mensaje HTML que al usuario
                     fail_silently=False,
                 )
-                
-                
-                
-                
+
                 
             messages.success(request, 'Cuenta modificada correctamente. ' + action_message)
             
-            if request.is_ajax():
-                return JsonResponse({'status': 'success', 'message': action_message})
-            else:
-                return redirect('admin_panel')  # Redirige solo si no es una solicitud AJAX
+            return redirect('admin_panel')  # Redirige solo si no es una solicitud AJAX
         
         except User.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Usuario no encontrado'})
