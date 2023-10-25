@@ -602,7 +602,8 @@ def activate_account(request, account_id):
             user.bankaccount.save()
 
             # Redirige de nuevo a la misma página
-            return render(request, 'accounts/_activacion.html', {'user': user}) 
+            
+            return redirect('admin_panel') 
 
         # Renderiza la plantilla HTML con los datos del usuario
         return render(request, 'accounts/_activacion.html', {'user': user})

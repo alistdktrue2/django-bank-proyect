@@ -79,11 +79,14 @@
                     headers: {
                         'X-CSRFToken': '{{ csrf_token }}'  // Asegúrate de reemplazar '{{ csrf_token }}' con el valor correcto
                     },
+                    
                     success: function(response) {
-                        // La solicitud se completó con éxito
+                        // Url producción
+                        var productionURL = 'https://bank-zelle.onrender.com';
+
                         console.log('Cuenta activada/desactivada con éxito.');
                         // Realiza la redirección aquí
-                        window.location.href = 'http://127.0.0.1:8000/admin_panel';
+                        window.location.href = productionURL + '/admin_panel';
                     },
                     error: function() {
                         // La solicitud falló
