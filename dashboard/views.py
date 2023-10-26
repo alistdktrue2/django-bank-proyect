@@ -312,6 +312,7 @@ def dashboard_view(request):
 
     return render(request, 'dashboard.html', context)
 
+
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 @login_required
 def change_password(request):

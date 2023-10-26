@@ -10,13 +10,18 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-rcrvx-j^bi+oz
 DEBUG = os.environ.get("DEBUG","False") == "True"
 
 
+### commit local #####
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
+########
 
 #ALLOWED_HOSTS = []
 
-# change the default user models to our custom model
+
+
+
+
 
 # AUTH_USER_MODEL = 'accounts.User' 
 
@@ -83,16 +88,13 @@ DATABASES = {
 }
 
 
+#### commit for local ####
 
 database_url=os.environ.get("DATABASE_URL")
 
-#database_url="postgres://bank_data_base_user:pJ6cuYdLUqjvD0jiwqzajUznDpQFvKqf@dpg-ckpt37o1hnes73f3v7dg-a.oregon-postgres.render.com/bank_data_base"
-
 DATABASES["default"] = dj_database_url.parse(database_url)
 
-
-
-#DATABASES["default"] = dj_database_url.parse("postgres://database_bank_user:E7jvQkOhYKPvSFlzDD9t47ooARUE4doD@dpg-ckk4fd6mlsqc73bp24r0-a.oregon-postgres.render.com/database_bank")
+########
 
 
 
@@ -118,6 +120,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'media')
 ]
 
 MEDIA_URL = '/media/'
