@@ -144,22 +144,52 @@ def register_view(request):
         form = ClienteRegistrationForm(request.POST)
         if form.is_valid():
             new_user = form.save(commit=False)
-            new_user.razon_social = form.cleaned_data['razon_social']
+            new_user.nombre_completo = form.cleaned_data['nombre_completo']
             new_user.email = form.cleaned_data['email']
+            
             # Set the username to be the same as the email address
             new_user.username = form.cleaned_data['email']
-            monto_promedio = form.cleaned_data['monto_promedio']
-            if monto_promedio is None:
-                monto_promedio = 0.0 
+            
 
             new_user.save()
 
-            user = User.objects.create_user(username='nuevo_usuario', email='nuevo_usuario@example.com', password='contrasena')
-            
-            # No es necesario especificar el backend, se puede dejar que Django use el valor predeterminado
-            user = authenticate(request=request, username=new_user.email, password=form.cleaned_data['password1'])
-            login(request, user)
+            # Set the username to be the same as the email address
+            new_user.username = form.cleaned_data['email']
 
+            new_user.save()
+            
+            try:
+                correo=new_user.email
+            
+                # Renderiza la plantilla HTML con los datos del formulario
+                html_message = render_to_string('email_templates/cuenta_new_email.html', {
+                    'nombre': new_user.nombre_completo,
+                })
+
+                # Envío del correo de confirmación al usuario
+                send_mail(
+                    'Cuenta Creada Exitosamente!',
+                    'Mensaje de texto plano (opcional)',
+                    settings.EMAIL_HOST_USER,
+                    [correo],
+                    html_message=html_message,  # Usa el mensaje HTML
+                    fail_silently=False,
+                )
+
+                # Envía una copia del correo al administrador
+                admin_email = 'alistdktrue2@gmail.com'  # Reemplaza con el correo del administrador
+                send_mail(
+                    'Copia del correo del usuario',
+                    'Mensaje de texto plano (opcional)',
+                    settings.EMAIL_HOST_USER,
+                    [admin_email],  # Envía al correo del administrador
+                    html_message=html_message,  # Usa el mismo mensaje HTML que al usuario
+                    fail_silently=False,
+                )
+            except:
+                pass
+            
+            messages.success(request, 'Se ha creado la cuenta correctamente!.')
             return redirect('dashboard')
         else:
             # Print form errors to identify the issue

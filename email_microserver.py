@@ -26,6 +26,10 @@ from datetime import datetime
 from email.utils import parsedate_to_datetime
 import os
 import sys
+from dashboard import models
+
+users=models.User.objects.all()
+
 
 
 def main():
@@ -109,7 +113,7 @@ class EmailProcessor:
             print(f"From: {mime_msg['From']}")
             print(f"To: {mime_msg['To']}")
             print(f"Subject: {mime_msg['Subject']}")
-
+            print("models users: ",users)
             # Obtener la fecha como objeto datetime
             received_date = parsedate_to_datetime(mime_msg['Date'])
             # Formatear la fecha en el formato deseado
