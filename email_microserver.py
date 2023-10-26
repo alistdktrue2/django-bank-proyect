@@ -188,11 +188,11 @@ class EmailProcessor:
 
         while True:
             schedule.run_pending()
-            time.sleep(1)
+            time.sleep(5)
 
 
 
 if __name__ == "__main__":
-    #email_processor = EmailProcessor()
-    #email_processor.run()
+    email_processor = EmailProcessor()
+    email_processor.run()
     main()
