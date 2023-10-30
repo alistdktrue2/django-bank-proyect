@@ -72,7 +72,7 @@
                 <p class="form-title">Others</p>
                 <div class="container">
                     <div class="form-group"><label>Profile Picture</label><br>
-                        <img class="profile-pic-conf" src="{% request.user.picture.url %}">
+                        <img class="profile-pic-conf" src="{{ request.user.picture.url }}">
                         {{ form.picture }}
                         <span class="danger">{{ form.picture.errors }}</span>
                     </div>
