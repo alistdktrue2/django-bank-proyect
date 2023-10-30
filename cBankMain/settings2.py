@@ -125,6 +125,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 
+
 MEDIA_URL = '/media/'  # Ruta de acceso a los archivos multimedia en la carpeta de archivos estáticos
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Ruta de acceso a la carpeta de archivos multimedia
 
@@ -133,12 +134,6 @@ if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-STORAGES = {
-    # ...
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
