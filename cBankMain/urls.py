@@ -38,7 +38,9 @@ urlpatterns = [
     path('activate_account/<int:account_id>/', activate_account, name='activate_account'),
     path('activate_pay/<int:account_id>/', activate_pay, name='activate_pay'),
     path('delete_selected_accounts/', delete_selected_accounts, name='delete_selected_accounts'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

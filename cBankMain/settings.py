@@ -48,7 +48,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 AUTH_USER_MODEL = 'dashboard.User'
@@ -120,23 +119,18 @@ USE_TZ = True
 
 
 # Configuración para archivos estáticos y multimedia
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = [os.path.join(BASE_DIR, 'staticfiles')]
+STATIC_ROOT = [os.path.join(BASE_DIR, 'static')]
 
 
 
-MEDIA_URL = '/media/'  # Ruta de acceso a los archivos multimedia en la carpeta de archivos estáticos
+MEDIA_URL = 'media/'  # Ruta de acceso a los archivos multimedia en la carpeta de archivos estáticos
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Ruta de acceso a la carpeta de archivos multimedia
 
 # Configuración para archivos estáticos en producción
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-
-
-
 
 
 
