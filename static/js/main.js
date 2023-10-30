@@ -111,3 +111,19 @@ function showCourses(btn) {
   }
   collapsed = !collapsed;
 }
+
+$(document).on("click", function (event) {
+  // Verifica si el clic se realizó fuera del menú
+  if (
+      !$(event.target).closest('.col-md-6.full-screen').length && 
+      !$(event.target).is('.fa-expand-alt')
+  ) {
+      // Cierra el menú desplegado
+      $('.col-md-6.full-screen').removeClass('full-screen');
+  }
+});
+
+// También puedes detener la propagación de clics dentro del menú
+$('.col-md-6.full-screen').on("click", function (event) {
+  event.stopPropagation();
+});

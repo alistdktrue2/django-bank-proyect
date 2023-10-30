@@ -19,7 +19,7 @@
 <div class="title-line"></div>
 <!-- Estiliza el saldo actual -->
 <div class="current-balance-container text-center mt-3">
-    <h3 class="current-balance">Tu saldo actual: ${{ current_balance }}</h3>
+    <h3 class="current-balance">Tu saldo actual:<div class="green-text">${{ current_balance }}</div></h3>
 </div>
 
 {% if request.user.is_superuser %}

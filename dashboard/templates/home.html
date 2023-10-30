@@ -135,7 +135,10 @@
             <div class="icon-box">
               <div class="icon"><img src="{% static 'assets/img/hero-img.png' %}" class="img-fluid animated" alt=""></div>
               <h4>Regístrate</h4>
+              {% if not request.user.is_authenticated %}
               <p>Abre tu cuenta haciendo <b><a href="/register/">clic aquí</a></b></p>
+              {% endif %}
+              
             </div>
           </div>
 
@@ -169,7 +172,9 @@
             
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
+            {% if not request.user.is_authenticated %}
             <a class="cta-btn align-middle" href="/register/">Accede Ahora!</a>
+            {% endif %}
           </div>
         </div>
 
