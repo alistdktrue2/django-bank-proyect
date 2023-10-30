@@ -11,7 +11,7 @@
 				<button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false">
 					<!-- {{ request.user.get_full_name|truncatechars:15 }} -->
-					<img class="profile-pic" src="{% static request.user.picture.url %}">
+					<img class="profile-pic" src="{% request.user.picture.url %}">
 				</button>
 				<div class="dropdown-menu" style="min-width: 14rem !important;" aria-labelledby="dropdownMenuButton">
 					<p class="container text-muted-xs text-center">
