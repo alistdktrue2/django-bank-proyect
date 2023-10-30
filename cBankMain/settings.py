@@ -21,9 +21,7 @@ ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 
-
-
-# AUTH_USER_MODEL = 'accounts.User' 
+AUTH_USER_MODEL = 'accounts.User' 
 
 # Application definition
 INSTALLED_APPS = [
