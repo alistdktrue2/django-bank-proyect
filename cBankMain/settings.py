@@ -122,9 +122,8 @@ USE_TZ = True
 # Configuración para archivos estáticos y multimedia
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/static/media/'  # Ruta de acceso a los archivos multimedia en la carpeta de archivos estáticos
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')  # Ruta de acceso a la carpeta de archivos multimedia
 
 # Configuración para archivos estáticos en producción
 if not DEBUG:

@@ -3,6 +3,35 @@ function toggleSidebar() {
   document.getElementById("side-nav").classList.toggle("toggle-active");
   document.getElementById("main").classList.toggle("toggle-active");
   document.getElementById("top-navbar").classList.toggle("toggle-active");
+  $(document).on("click", function (event) {
+      // Verifica si el clic se realizó fuera del menú
+      if (
+          !$(event.target).closest('.col-md-6.full-screen').length && 
+          !$(event.target).is('.fa-expand-alt')
+      ) {
+          // Cierra el menú desplegado
+          $('.col-md-6.full-screen').removeClass('full-screen');
+      }
+  });$(document).on("click", function (event) {
+        // Verifica si el clic se realizó fuera del menú
+        if (
+            !$(event.target).closest('.col-md-6.full-screen').length && 
+            !$(event.target).is('.fa-expand-alt')
+        ) {
+            // Cierra el menú desplegado
+            $('.col-md-6.full-screen').removeClass('full-screen');
+        }
+    });
+
+    // También puedes detener la propagación de clics dentro del menú
+    $('.col-md-6.full-screen').on("click", function (event) {
+        event.stopPropagation();
+    });
+
+  // También puedes detener la propagación de clics dentro del menú
+  $('.col-md-6.full-screen').on("click", function (event) {
+      event.stopPropagation();
+  });
   //document.querySelector(".manage-wrap").classList.toggle("toggle-active");
 }
 
@@ -82,3 +111,19 @@ function showCourses(btn) {
   }
   collapsed = !collapsed;
 }
+
+$(document).on("click", function (event) {
+  // Verifica si el clic se realizó fuera del menú
+  if (
+      !$(event.target).closest('.col-md-6.full-screen').length && 
+      !$(event.target).is('.fa-expand-alt')
+  ) {
+      // Cierra el menú desplegado
+      $('.col-md-6.full-screen').removeClass('full-screen');
+  }
+});
+
+// También puedes detener la propagación de clics dentro del menú
+$('.col-md-6.full-screen').on("click", function (event) {
+  event.stopPropagation();
+});
