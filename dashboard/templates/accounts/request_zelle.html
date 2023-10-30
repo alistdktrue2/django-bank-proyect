@@ -16,17 +16,10 @@
 <div class="centered-image">
     <img src="{% static 'images/SmartConsultingHorizontal.png' %}" width="100px" alt="Logo Django LMS">
 </div>
-<div class="title-line"></div>
 <!-- Estiliza el saldo actual -->
 <div class="current-balance-container text-center mt-3">
     <h3 class="current-balance">Tu saldo actual:<div class="green-text">${{ current_balance }}</div></h3>
 </div>
-
-{% if request.user.is_superuser %}
-    <a class="add-button" href="{% url 'pays_list' %}">
-        <i class="fa fa-users"></i> Ver Clientes
-    </a>
-{% endif %}
 
 {% if messages %}
     {% for message in messages %}
