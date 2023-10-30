@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-rcrvx-j^bi+oz+3@9d&ub2#r4%@zzmy7=n1%35n0-^-+hep_0u')
 
 
-DEBUG = os.environ.get("DEBUG","False") == "True"
+DEBUG = os.environ.get("DEBUG","False").lower() == "True"
 
 
 ### commit local #####
@@ -119,13 +119,13 @@ USE_TZ = True
 
 
 # Configuración para archivos estáticos y multimedia
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = [os.path.join(BASE_DIR, 'static')]
 
 
 
-MEDIA_URL = 'media/'  # Ruta de acceso a los archivos multimedia en la carpeta de archivos estáticos
+MEDIA_URL = '/media/'  # Ruta de acceso a los archivos multimedia en la carpeta de archivos estáticos
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Ruta de acceso a la carpeta de archivos multimedia
 
 # Configuración para archivos estáticos en producción
