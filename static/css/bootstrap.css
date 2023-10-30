@@ -84,6 +84,10 @@ p {
   margin-bottom: 1rem;
 }
 
+.centered-image {
+  text-align: center;
+}
+
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
