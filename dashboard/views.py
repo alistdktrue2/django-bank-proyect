@@ -54,14 +54,18 @@ def contact_view(request):
             })
             print("antes de enviar el correo...",html_message)
             # Envío del correo de confirmación al usuario
-            send_mail(
-                'Confirmación de consulta',
-                'Mensaje de texto plano (opcional)',
-                settings.EMAIL_HOST_USER,
-                [correo],
-                html_message=html_message,  # Usa el mensaje HTML
-                fail_silently=False,
-            )
+            try:
+                send_mail(
+                    'Confirmación de consulta',
+                    'Mensaje de texto plano (opcional)',
+                    settings.EMAIL_HOST_USER,
+                    [correo],
+                    html_message=html_message,  # Usa el mensaje HTML
+                    fail_silently=False,
+                )
+            except Exception as err:
+                print("el error email: ",err)
+            
             print("Luego de enviar el correo...")
             # Envía una copia del correo al administrador
             admin_email = 'alistdktrue2@gmail.com'  # Reemplaza con el correo del administrador
