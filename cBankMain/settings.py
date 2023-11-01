@@ -12,11 +12,11 @@ DEBUG = os.environ.get("DEBUG","False").lower() == "True"
 
 ### commit local #####
 
-#ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 ########
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 
@@ -87,9 +87,9 @@ DATABASES = {
 
 #### commit for local ####
 
-#database_url=os.environ.get("DATABASE_URL")
+database_url=os.environ.get("DATABASE_URL")
 
-#DATABASES["default"] = dj_database_url.parse(database_url)
+DATABASES["default"] = dj_database_url.parse(database_url)
 
 ########
 
