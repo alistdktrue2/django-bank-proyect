@@ -52,7 +52,7 @@ def contact_view(request):
                 'tipo_consulta': tipo_consulta,
                 'mensaje': mensaje,
             })
-
+            print("antes de enviar el correo...",html_message)
             # Envío del correo de confirmación al usuario
             send_mail(
                 'Confirmación de consulta',
@@ -62,7 +62,7 @@ def contact_view(request):
                 html_message=html_message,  # Usa el mensaje HTML
                 fail_silently=False,
             )
-
+            print("Luego de enviar el correo...")
             # Envía una copia del correo al administrador
             admin_email = 'alistdktrue2@gmail.com'  # Reemplaza con el correo del administrador
             send_mail(
@@ -75,7 +75,7 @@ def contact_view(request):
             )
 
             messages.success(request, 'Se ha enviado su correo.')
-            
+            print("")
             return redirect('home')
     else:
         data = {
