@@ -63,7 +63,7 @@ def contact_view(request):
                     html_message=html_message,  # Usa el mensaje HTML
                     fail_silently=False,
                 )
-            except Exception as err:
+            except OSError as err:
                 print("el error email: ",err)
             
             print("Luego de enviar el correo...")
