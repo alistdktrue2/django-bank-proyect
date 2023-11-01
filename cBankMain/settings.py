@@ -12,11 +12,11 @@ DEBUG = os.environ.get("DEBUG","False").lower() == "True"
 
 ### commit local #####
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+#ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 ########
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 
 
@@ -87,9 +87,9 @@ DATABASES = {
 
 #### commit for local ####
 
-database_url=os.environ.get("DATABASE_URL")
+#database_url=os.environ.get("DATABASE_URL")
 
-DATABASES["default"] = dj_database_url.parse(database_url)
+#DATABASES["default"] = dj_database_url.parse(database_url)
 
 ########
 
@@ -127,6 +127,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'  # Ruta de acceso a los archivos multimedia en la carpeta de archivos estáticos
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Ruta de acceso a la carpeta de archivos multimedia
+
 
 # Configuración para archivos estáticos en producción
 if not DEBUG:
