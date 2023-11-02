@@ -154,10 +154,19 @@
    */
   let preloader = select('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove()
-    });
-  }
+    // Cargar el archivo loading.html dentro del elemento preloader
+    fetch('loading.html')
+      .then(response => response.text())
+      .then(data => {
+        preloader.innerHTML = data;
+      })
+      .then(() => {
+        // Agregar una escucha para esperar a que la página principal se cargue
+        window.addEventListener('load', () => {
+          // Ocultar el preloader
+          preloader.style.display = 'none';
+        });
+      });
 
   /**
    * Initiate  glightbox 
